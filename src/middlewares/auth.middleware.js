@@ -3,6 +3,8 @@ import { ApiResponse } from "../utils/api-response.js";
 import { ApiError } from "../utils/api-error.js";
 import User from "../models/user.models.js";
 
+import jwt from "jsonwebtoken";
+
 const authMiddleware = asyncHandler(async(req, res, next) => {
     let token = req.cookies?.accessToken;
 

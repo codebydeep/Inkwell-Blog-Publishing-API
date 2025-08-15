@@ -1,12 +1,14 @@
 import mongoose from "mongoose";
-<<<<<<< HEAD
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import crypto from "crypto";
 
-import { UserRolesEnum, AvailableUserRoles } from "../utils/constant.js";
-=======
->>>>>>> parent of 97c16e6 (added- User-authentication controllers)
+import dotenv from "dotenv";
+dotenv.config({
+  path: './.env'
+})
+
+import crypto from "crypto";
+import { AvailableUserRoles, UserRolesEnum } from "../utils/constant.js";
 
 const userSchema = new mongoose.Schema(
   {
