@@ -30,7 +30,7 @@ const postSchema = new mongoose.Schema(
         status: {
             type: String,
             enum: AvailablePostStatus,
-            default: PostStatusEnum.DRAFT
+            default: PostStatusEnum.PENDING
         },
         category: {
             type: mongoose.Schema.Types.ObjectId,

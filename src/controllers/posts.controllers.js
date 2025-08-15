@@ -83,7 +83,7 @@ const viewPublishPost = asyncHandler(async(req, res) => {
         )
     }
 
-    if(post.status !== "published"){
+    if(post.status !== "approved"){
         throw new ApiError(
             400,
             "Post is not published!"
