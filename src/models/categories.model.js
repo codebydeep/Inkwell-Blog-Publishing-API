@@ -7,9 +7,8 @@ const categorySchema = new mongoose.Schema(
             required: true,
             maxlength: 50
         },
-        urlKey: {
+        slug: {
             type: String,
-            required: true,
             trim: true,
             lowercase: true,
             unique: true

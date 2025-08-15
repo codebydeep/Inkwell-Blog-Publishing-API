@@ -41,7 +41,7 @@ const createPost = asyncHandler(async(req, res) => {
     
     post.author = req.user._id;
     
-    await post.save({validateBeforeSave: false});
+    await post.save({});
 
     return res.status(201).json(
         new ApiResponse(
