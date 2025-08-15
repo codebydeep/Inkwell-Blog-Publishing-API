@@ -8,7 +8,7 @@ const postSchema = new mongoose.Schema(
             required: true,
             maxlength: 100,
         },
-        urlKey: {
+        slug: {
             type: String,
             required: true,
             trim: true,

@@ -3,6 +3,8 @@ import { ApiResponse } from "../utils/api-response.js";
 import { ApiError } from "../utils/api-error.js";
 import Post from "../models/posts.model.js";
 
+import slugify from "slugify";
+
 const createPost = asyncHandler(async(req, res) => {
     const {
         title,
@@ -19,8 +21,8 @@ const createPost = asyncHandler(async(req, res) => {
         )
     };
     
-    const urlKey = title.replace(/\s+/g, '-').toLowerCase();
-    
+    const slug = slugify(title);
+
     const existingPost = await Post.findOne({urlKey});
 
     if(existingPost){
@@ -36,7 +38,7 @@ const createPost = asyncHandler(async(req, res) => {
         description,
         content,
         coverImage,
-        urlKey
+        slug,
     });
     
     post.author = req.user._id;
