@@ -6,7 +6,7 @@ import { keyMiddleware } from "../middlewares/apiKey.middleware.js";
 
 const authRoutes = Router();
 
-authRoutes.use(keyMiddleware);
+// authRoutes.use(keyMiddleware);
 
 authRoutes.post("/register", register);
 authRoutes.post("/login", login);
@@ -17,6 +17,6 @@ authRoutes.get("/get-user", authMiddleware, getMe);
 authRoutes.post("/refresh-token", refreshAccessToken);
 authRoutes.post("/change-password", authMiddleware, changeCurrentPassword);
 
-authRoutes.get("/verify-email", verifyEmail);
+authRoutes.get("/verify-email/", verifyEmail);
 
 export default authRoutes;

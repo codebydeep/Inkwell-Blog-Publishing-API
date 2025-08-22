@@ -32,10 +32,10 @@ const register = asyncHandler(async(req, res) => {
 
     const refreshToken = user.generateRefreshToken();
     const accessToken = user.generateAccessToken();
-    // const emailToken = user.generateEmailVerificationToken();
+    const emailToken = user.generateEmailVerificationToken();
     
     user.refreshToken = refreshToken;
-    // user.emailVerificationToken = emailToken;
+    user.emailVerificationToken = emailToken;
     user.emailVerificationTokenExpiry = Date.now() + 10 * 60 * 1000;
 
     user.save({validateBeforeSave: false});

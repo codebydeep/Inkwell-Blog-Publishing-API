@@ -62,7 +62,7 @@ userSchema.methods.isPasswordMatched = async function (password) {
 };
 
 userSchema.methods.generateEmailVerificationToken = function () {
-  const token =  jwt.sign(
+    return jwt.sign(
     { 
       id: this._id,
       role: this.role,
@@ -72,8 +72,6 @@ userSchema.methods.generateEmailVerificationToken = function () {
       expiresIn: process.env.EMAIL_VERIFICATION_TOKEN_EXPIRY      
     }
   )
-
-  return crypto.createHash("sha256").update(token).digest("hex");
 }
 
 userSchema.methods.generateRefreshToken = function () {

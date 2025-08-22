@@ -23,7 +23,7 @@ const createPost = asyncHandler(async(req, res) => {
     
     const slug = slugify(title);
 
-    const existingPost = await Post.findOne({urlKey});
+    const existingPost = await Post.findOne({slug});
 
     if(existingPost){
         throw new ApiError(

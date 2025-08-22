@@ -42,4 +42,4 @@ const generateApiKey = asyncHandler(async(req, res) => {
     )
 });
 
-export { generateApiKey, answer };
+export { generateApiKey };

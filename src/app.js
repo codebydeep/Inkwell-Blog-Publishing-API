@@ -7,6 +7,7 @@ import authRoutes from "./routes/auth.routes.js";
 import postsRoutes from "./routes/posts.routes.js";
 import categoryRoutes from "./routes/category.routes.js";
 import postReviewRoutes from "./routes/postReview.routes.js";
+import ApiKeyRoutes from "./routes/api-key.routes.js";
 
 const app = express();
 
@@ -32,5 +33,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/posts", postsRoutes);
 app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/admin/post-reviews", postReviewRoutes);
+
+app.use("/api/v1/", ApiKeyRoutes);
 
 export default app;
