@@ -2,6 +2,7 @@ import { asyncHandler } from "../utils/async-handler.js";
 import { ApiResponse } from "../utils/api-response.js";
 import { ApiError } from "../utils/api-error.js";
 import Post from "../models/posts.model.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 import slugify from "slugify";
 
@@ -10,18 +11,16 @@ const createPost = asyncHandler(async(req, res) => {
         title,
         description,
         content,
-        coverImage,
-        category
     } = req.body;
     
-    if(!title || !description || !content || !coverImage){
+    if(!title || !description || !content ){
         throw new ApiError(
             400,
             "All fields are required!"
         )
     };
     
-    const slug = slugify(title);
+    const slug = `${slugify(title)} - ${Date.now()}`;
 
     const existingPost = await Post.findOne({slug});
 
@@ -32,12 +31,26 @@ const createPost = asyncHandler(async(req, res) => {
         )
     };
 
-    
+    let coverImageUrl = "";
+
+    if(req.file) {
+        const coverImagePath = req.file.path;
+        const cover = await uploadOnCloudinary(coverImagePath);
+        
+        if(!cover){
+            throw new ApiError(
+                400,
+                "Failed to upload coverImage"
+            )
+        }
+        coverImageUrl = cover.url;
+    }
+
     const post = await Post.create({
         title,
         description,
         content,
-        coverImage,
+        coverImage: coverImageUrl,
         slug,
     });
     
@@ -58,7 +71,7 @@ const getPosts = asyncHandler(async(req, res) => {
     
     const posts = await Post.find({})
     .populate("author", "fullname email")
-    .populate("category", "name urlKey").sort({
+    .populate("category", "name slug").sort({
         createdAt: -1
     });
 
