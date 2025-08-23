@@ -49,6 +49,9 @@ Supports role-based access control, post approval workflows, and category manage
    ACCESS_TOKEN_EXPIRY=
    EMAIL_VERIFICATION_TOKEN_SECRET=your-secret
    EMAIL_VERIFICATION_TOKEN_EXPIRY=
+   CLOUDINARY_CLOUD_NAME=your-cloud-name
+   CLOUDINARY_API_KEY=your-key
+   CLOUDINARY_API_SECRET=your-secret
    ```
 
 ## Postman Collection-
